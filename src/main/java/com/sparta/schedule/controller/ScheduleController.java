@@ -23,8 +23,13 @@ public class ScheduleController {
     }
 
     @GetMapping("/schedules")
-    public List<ScheduleResponseDto> getSchedules() {
-        return scheduleService.getSchedules();
+    public List<ScheduleResponseDto> getAllSchedules() {
+        return scheduleService.getAllSchedules();
+    }
+
+    @GetMapping("/schedules/{id}")
+    public ScheduleResponseDto getSchedule(@PathVariable Long id) {
+        return scheduleService.getSchedule(id);
     }
 
 }

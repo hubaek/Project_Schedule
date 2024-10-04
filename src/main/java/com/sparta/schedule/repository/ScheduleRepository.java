@@ -64,4 +64,23 @@ public class ScheduleRepository {
             }
         });
     }
+
+    public Schedule findById(Long id) {
+        String sql = "SELECT * FROM schedule WHERE id = ?";
+
+        return jdbcTemplate.query(sql, resultSet -> {
+            if (resultSet.next()) {
+                Schedule schedule = new Schedule();
+                schedule.setSchedule(resultSet.getString("schedule"));
+                schedule.setName(resultSet.getString("name"));
+                schedule.setIn_dtm(resultSet.getTimestamp("in_dtm").toLocalDateTime());
+                schedule.setUp_dtm(resultSet.getTimestamp("up_dtm").toLocalDateTime());
+                return schedule;
+            } else {
+                return null;
+            }
+        }, id);
+
+    }
+
 }
