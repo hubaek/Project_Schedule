@@ -85,6 +85,6 @@ public class ScheduleRepository {
 
     public void update(Long id, ScheduleRequestDto requestDto) {
         String sql = "UPDATE schedule SET schedule = ?, name = ?, up_dtm = ? WHERE id = ?";
-        jdbcTemplate.update(sql, requestDto.getSchedule(), requestDto.getName(), requestDto.getUp_dtm(), id);
+        jdbcTemplate.update(sql, requestDto.getSchedule(), requestDto.getName(), id);
     }
 }
