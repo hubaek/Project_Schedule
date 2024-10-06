@@ -1,5 +1,6 @@
 package com.sparta.schedule.repository;
 
+import com.sparta.schedule.dto.ScheduleRequestDto;
 import com.sparta.schedule.dto.ScheduleResponseDto;
 import com.sparta.schedule.entity.Schedule;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -80,7 +81,10 @@ public class ScheduleRepository {
                 return null;
             }
         }, id);
-
     }
 
+    public void update(Long id, ScheduleRequestDto requestDto) {
+        String sql = "UPDATE schedule SET schedule = ?, name = ?, up_dtm = ? WHERE id = ?";
+        jdbcTemplate.update(sql, requestDto.getSchedule(), requestDto.getName(), requestDto.getUp_dtm(), id);
+    }
 }

@@ -49,4 +49,16 @@ public class ScheduleService {
             throw new IllegalArgumentException("선택한 일정이 존재하지 않습니다.");
         }
     }
+
+    public Long updateSchedule(Long id, ScheduleRequestDto requestDto) {
+        // 해당 일정이 DB에 존재하는지 확인
+        Schedule schedule = scheduleRepository.findById(id);
+
+        if (schedule != null) {
+            scheduleRepository.update(id, requestDto);
+            return id;
+        } else {
+            throw new IllegalArgumentException("선택한 일정이 존재하지 않습니다.");
+        }
+    }
 }
