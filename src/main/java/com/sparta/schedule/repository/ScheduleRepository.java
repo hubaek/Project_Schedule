@@ -84,7 +84,12 @@ public class ScheduleRepository {
     }
 
     public void update(Long id, ScheduleRequestDto requestDto) {
-        String sql = "UPDATE schedule SET schedule = ?, name = ?, up_dtm = ? WHERE id = ?";
+        String sql = "UPDATE schedule SET schedule = ?, name = ? WHERE id = ?";
         jdbcTemplate.update(sql, requestDto.getSchedule(), requestDto.getName(), id);
+    }
+
+    public void delete(Long id) {
+        String sql = "DELETE FROM schedule WHERE id = ?";
+        jdbcTemplate.update(sql, id);
     }
 }
